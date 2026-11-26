@@ -1,75 +1,51 @@
-# React + TypeScript + Vite
+# Tugas 6 — Pengembangan Aplikasi Web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Muhammad Haris Nur Fadillah 1247050090
 
-Currently, two official plugins are available:
+Project ini dibuat untuk memenuhi tugas Pertemuan 6 mata kuliah Pengembangan Aplikasi Web dengan menerapkan Git, GitHub, npm, TypeScript, dan Vite.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Teknologi
+- TypeScript
+- Vite
+- npm
+- Git & GitHub
 
-## React Compiler
+## Menjalankan Aplikasi
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Build aplikasi:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm run build
 ```
+
+## Implementasi Git dan GitHub
+
+Dalam pengerjaan project ini dilakukan:
+- Membuat repository GitHub.
+- Melakukan commit dan push perubahan.
+- Membuat branch `branch` dan `branch2`.
+- Melakukan merge branch ke `main`.
+- Melakukan Pull Request.
+- Melakukan pull dari repository remote.
+- Mencoba dan menyelesaikan merge conflict.
+
+## Screenshot Bukti Git
+
+Screenshot berikut menunjukkan riwayat commit, branch, merge, dan hasil penyelesaian merge conflict.
+
+![branch](./screenshots/branch.png)
+
+![Pull Request](./screenshots/pullRequest.png)
+
+![Pull Request Berhasil](./screenshots/pullRequest2.png)
+
+![Merge Conflict](./screenshots/conflict.png)
+
+![All](./screenshots/buktiSemua.png)
+
+
