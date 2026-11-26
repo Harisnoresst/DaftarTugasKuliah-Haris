@@ -1,13 +1,257 @@
 <!doctype html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tugas6-haris</title>
+    <title>Tugas Kuliah</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <div>
+          <span class="eyebrow">Tugas 6 - Muhammad Haris Nur Fadillah - 1247050090</span>
+          <h1 id="app-title">Daftar Tugas Kuliah</h1>
+          <p class="subtitle" id="app-meta"></p>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <!-- Ringkasan Statistik -->
+      <section class="stats" aria-label="Ringkasan" id="stats"></section>
+
+      <!-- Layout Utama -->
+      <div class="layout">
+        <!-- Panel Form -->
+        <aside class="panel form-panel">
+          <div class="panel-head">
+            <h2 id="form-title">Tambah tugas</h2>
+          </div>
+          <form id="task-form" autocomplete="off">
+            <div class="field">
+              <label for="title">Judul tugas</label>
+              <input id="title" name="title" type="text" required maxlength="80" placeholder="Contoh: Laporan praktikum Git" />
+            </div>
+
+            <div class="field">
+              <label for="course">Mata kuliah</label>
+              <input id="course" name="course" type="text" required maxlength="60" placeholder="Contoh: Pengembangan Aplikasi Web" />
+            </div>
+
+            <div class="field">
+              <label for="description">Deskripsi tugas</label>
+              <textarea id="description" name="description" rows="3" placeholder="Detail tugas, catatan, atau link referensi..."></textarea>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label for="deadline">Tenggat</label>
+                <input id="deadline" name="deadline" type="date" />
+              </div>
+              <div class="field">
+                <label for="priority">Prioritas</label>
+                <select id="priority" name="priority">
+                  <option value="rendah">Rendah</option>
+                  <option value="sedang" selected>Sedang</option>
+                  <option value="tinggi">Tinggi</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field" id="status-field" hidden>
+              <label for="status">Status</label>
+              <select id="status" name="status">
+                <option value="belum">Belum Selesai</option>
+                <option value="selesai">Selesai</option>
+              </select>
+            </div>
+
+            <div class="actions">
+              <button type="submit" class="btn primary" id="submit-btn">Tambah tugas</button>
+              <button type="button" class="btn ghost" id="cancel-btn" hidden>Batal</button>
+            </div>
+          </form>
+        </aside>
+
+        <!-- Panel Daftar Tugas -->
+        <section class="panel list-panel">
+          <div class="list-head">
+            <h2 id="list-title">Tugas saya</h2>
+            <div class="filters" role="group" aria-label="Filter status">
+              <button class="chip active" data-filter="semua">Semua</button>
+              <button class="chip" data-filter="belum">Belum Selesai</button>
+              <button class="chip" data-filter="selesai">Selesai</button>
+            </div>
+          </div>
+          
+          <ul class="task-list" id="task-list"></ul>
+          
+          <div class="empty-state" id="empty" hidden>
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            <p>Belum ada tugas di sini.</p>
+            <span>Isi formulir untuk menambah tugas pertama.</span>
+          </div>
+        </section>
+      </div>
+
+      <!-- Bagian Penjelasan (Bento Cards dengan Ikon) -->
+      <section class="about" aria-labelledby="about-title">
+        <div class="about-header">
+          <span class="about-kicker">TEKNOLOGI & KONSEP</span>
+          <h2 id="about-title">Tentang proyek ini</h2>
+          <p class="lead">
+            Aplikasi ini dibuat untuk Tugas Pertemuan 6 (Pengembangan Aplikasi Web). Berikut ringkasan
+            alat yang dipakai dan alasannya.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <!-- Card 1: Git -->
+          <article class="about-card">
+            <div class="about-card-top">
+              <div class="about-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" x2="6" y1="3" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+              </div>
+              <span class="about-num">01</span>
+            </div>
+            <h3>Git &amp; GitHub</h3>
+            <p>
+              Git mencatat riwayat perubahan kode sebagai <em>commit</em>. Fitur yang dipakai: <em>branch</em>
+              untuk mengerjakan fitur terpisah dari <code>main</code>, <em>merge</em> untuk menggabungkannya,
+              penyelesaian <em>merge conflict</em> saat dua branch mengubah baris yang sama, serta
+              <code>push</code>/<code>pull</code> untuk sinkron dengan GitHub. <em>Pull Request</em> dipakai
+              agar perubahan bisa ditinjau sebelum masuk ke <code>main</code>. File <code>.gitignore</code>
+              menjaga <code>node_modules</code>, <code>dist</code>, dan <code>.env</code> tidak ikut terunggah.
+            </p>
+          </article>
+
+          <!-- Card 2: NPM -->
+          <article class="about-card">
+            <div class="about-card-top">
+              <div class="about-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+              </div>
+              <span class="about-num">02</span>
+            </div>
+            <h3>npm</h3>
+            <p>
+              npm adalah pengelola paket Node.js. Semua paket dan perintah proyek tercatat di
+              <code>package.json</code>. <code>dependencies</code> dibutuhkan saat aplikasi berjalan,
+              sedangkan <code>devDependencies</code> hanya untuk pengembangan (di proyek ini: TypeScript dan Vite).
+              Versi memakai <em>semantic versioning</em> <code>MAJOR.MINOR.PATCH</code>; tanda
+              <code>^5.4.10</code> berarti boleh naik ke 5.x.x terbaru tanpa berpindah ke versi mayor 6.
+              Perintah utama: <code>npm install</code>, <code>npm run dev</code>, <code>npm run build</code>.
+            </p>
+          </article>
+
+          <!-- Card 3: TypeScript -->
+          <article class="about-card">
+            <div class="about-card-top">
+              <div class="about-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
+              <span class="about-num">03</span>
+            </div>
+            <h3>TypeScript</h3>
+            <p>
+              TypeScript adalah JavaScript dengan sistem tipe, sehingga kesalahan seperti salah nama
+              properti terdeteksi sebelum kode dijalankan. Contoh yang dipakai di kode:
+              tipe primitif (<code>string</code>, <code>number</code>, <code>boolean</code>), <em>array</em>
+              (<code>Task[]</code>), <em>interface</em> (<code>Task</code>), <em>type alias</em> dan
+              <em>union type</em> (<code>TaskStatus</code>), serta <em>generics</em>
+              (<code>loadFromStorage&lt;T&gt;</code>, <code>findById&lt;T&gt;</code>).
+            </p>
+          </article>
+
+          <!-- Card 4: Vite -->
+          <article class="about-card">
+            <div class="about-card-top">
+              <div class="about-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+              <span class="about-num">04</span>
+            </div>
+            <h3>Vite</h3>
+            <p>
+              Vite adalah <em>build tool</em>. Saat pengembangan (<code>npm run dev</code>) ia menjalankan
+              server lokal dengan pembaruan instan. Saat <code>npm run build</code> ia menggabungkan dan
+              memperkecil kode menjadi folder <code>dist/</code> yang siap diunggah ke website.
+            </p>
+          </article>
+
+          <!-- Card 5: Environment Variables -->
+          <article class="about-card">
+            <div class="about-card-top">
+              <div class="about-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </div>
+              <span class="about-num">05</span>
+            </div>
+            <h3>Environment variables</h3>
+            <p>
+              Konfigurasi disimpan di <code>.env</code> dan dibaca lewat <code>import.meta.env</code>.
+              Hanya variabel berawalan <code>VITE_</code> yang dikirim ke browser, jadi nama aplikasi, versi,
+              dan nama pembuat aman dipakai. Password dan API key tidak boleh ditaruh di sini karena
+              isi bundle bisa dibaca siapa pun. <code>.env</code> masuk <code>.gitignore</code>, sedangkan
+              <code>.env.example</code> diunggah sebagai contoh.
+            </p>
+          </article>
+
+          <!-- Card 6: Compiler -->
+          <article class="about-card">
+            <div class="about-card-top">
+              <div class="about-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+              </div>
+              <span class="about-num">06</span>
+            </div>
+            <h3>Compiler, transpiler, bundler</h3>
+            <p>
+              <strong>Compiler</strong> menerjemahkan kode ke bentuk lain sekaligus memeriksanya
+              (<code>tsc</code> memeriksa tipe). <strong>Transpiler</strong> mengubah kode ke bahasa
+              sejenis di level yang sama, misalnya TypeScript ke JavaScript (dikerjakan esbuild di Vite).
+              <strong>Bundler</strong> menggabungkan banyak modul dan aset menjadi sedikit file yang efisien
+              untuk browser (Rollup di <code>vite build</code>).
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <!-- Pop-up Detail Tugas -->
+    <dialog id="task-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-head">
+          <span id="modal-priority" class="tag"></span>
+          <span id="modal-status" class="tag"></span>
+        </div>
+        <h3 id="modal-title">Judul Tugas</h3>
+        <div class="modal-meta">
+          <span id="modal-course"></span>
+          <span>&bull;</span>
+          <span id="modal-deadline"></span>
+        </div>
+        <div class="modal-desc-box">
+          <span class="modal-desc-label">Deskripsi Tugas</span>
+          <div class="modal-desc" id="modal-desc"></div>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn primary" id="modal-done-btn">Tandai Selesai</button>
+          <button type="button" class="btn ghost" id="modal-close-btn">Kembali</button>
+        </div>
+      </div>
+    </dialog>
+
+    <footer class="site-footer">
+      <div class="wrap" id="app-footer"></div>
+    </footer>
+
+    <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
